@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Sora:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Core palette - warm, sophisticated */
+    --background: 40 20% 98%;
+    --foreground: 220 20% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 10%;
+
+    /* Teal accent - sophisticated, trustworthy */
+    --primary: 172 66% 40%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 172 66% 50%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 20% 25%;
+
+    --muted: 220 14% 95%;
+    --muted-foreground: 220 10% 45%;
+
+    --accent: 172 50% 95%;
+    --accent-foreground: 172 66% 30%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 172 66% 40%;
+
+    --radius: 0.75rem;
+
+    /* Score colors */
+    --score-low: 0 72% 51%;
+    --score-medium: 38 92% 50%;
+    --score-high: 152 69% 40%;
+
+    /* Glass effect */
+    --glass-bg: 0 0% 100% / 0.7;
+    --glass-border: 0 0% 100% / 0.2;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.03);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
+    --shadow-glow: 0 0 40px hsl(172 66% 50% / 0.15);
+
+    /* Sidebar defaults */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 172 66% 40%;
+  }
+
+  .dark {
+    --background: 222 30% 8%;
+    --foreground: 220 20% 95%;
+
+    --card: 222 25% 11%;
+    --card-foreground: 220 20% 95%;
+
+    --popover: 222 25% 11%;
+    --popover-foreground: 220 20% 95%;
+
+    --primary: 172 66% 50%;
+    --primary-foreground: 222 30% 8%;
+    --primary-glow: 172 66% 60%;
+
+    --secondary: 222 20% 16%;
+    --secondary-foreground: 220 15% 80%;
+
+    --muted: 222 20% 18%;
+    --muted-foreground: 220 10% 55%;
+
+    --accent: 172 40% 15%;
+    --accent-foreground: 172 66% 70%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 222 20% 18%;
+    --input: 222 20% 18%;
+    --ring: 172 66% 50%;
+
+    /* Score colors - slightly brighter for dark mode */
+    --score-low: 0 72% 55%;
+    --score-medium: 38 92% 55%;
+    --score-high: 152 69% 50%;
+
+    /* Glass effect for dark mode */
+    --glass-bg: 222 25% 12% / 0.8;
+    --glass-border: 220 20% 25% / 0.3;
+
+    /* Shadows for dark mode */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --shadow-glow: 0 0 60px hsl(172 66% 50% / 0.2);
+
+    --sidebar-background: 222 25% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 172 66% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 222 20% 16%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 222 20% 18%;
+    --sidebar-ring: 172 66% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* Glass card effect */
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl;
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Score meter colors */
+  .score-low {
+    --score-color: var(--score-low);
+  }
+  .score-medium {
+    --score-color: var(--score-medium);
+  }
+  .score-high {
+    --score-color: var(--score-high);
+  }
+
+  /* Keyword chip styles */
+  .keyword-chip {
+    @apply inline-flex items-center px-3 py-1.5 rounded-full text-sm font-medium transition-all duration-200;
+  }
+  
+  .keyword-chip-skills {
+    @apply bg-primary/10 text-primary border border-primary/20;
+  }
+  
+  .keyword-chip-action {
+    @apply bg-accent text-accent-foreground border border-primary/10;
+  }
+  
+  .keyword-chip-metrics {
+    @apply bg-secondary text-secondary-foreground border border-border;
+  }
+
+  /* Glow button effect */
+  .btn-glow {
+    @apply relative overflow-hidden;
+  }
+  
+  .btn-glow::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 translate-x-[-100%] transition-transform duration-500;
+  }
+  
+  .btn-glow:hover::before {
+    @apply translate-x-[100%];
+  }
+}
+
+@layer utilities {
+  /* Text gradient */
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-primary-foreground bg-clip-text text-transparent;
+  }
+
+  /* Animate on scroll */
+  .animate-fade-up {
+    animation: fadeUp 0.6s ease-out forwards;
+  }
+
+  @keyframes fadeUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Stagger animation helper */
+  .stagger-1 { animation-delay: 0.1s; }
+  .stagger-2 { animation-delay: 0.2s; }
+  .stagger-3 { animation-delay: 0.3s; }
+  .stagger-4 { animation-delay: 0.4s; }
+  .stagger-5 { animation-delay: 0.5s; }
+}
