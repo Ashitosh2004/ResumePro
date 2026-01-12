@@ -8,6 +8,8 @@
 
 **Transform your resume into an interview magnet with enterprise-grade ATS optimization**
 
+*Created by [Ashitosh2004](https://github.com/Ashitosh2004)*
+
 [![Made with React](https://img.shields.io/badge/Made%20with-React-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
@@ -91,7 +93,7 @@ All processing happens in your browser. Your resume never leaves your device.
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/yourusername/resumepro.git
+git clone https://github.com/Ashitosh2004/resumepro.git
 
 # 2. Navigate to project directory
 cd resumepro
@@ -116,7 +118,7 @@ npm run dev
 | **Frontend** | React 18, TypeScript, Vite |
 | **UI Framework** | Tailwind CSS, shadcn/ui, Radix UI |
 | **Animations** | Framer Motion |
-| **AI Integration** | ChatGPT 3.5 API |
+| **AI Integration** | ChatGPT 3.5 |
 | **State Management** | React Query (TanStack Query) |
 | **PDF Generation** | jsPDF |
 | **Code Quality** | ESLint, TypeScript |
@@ -271,7 +273,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ### ⭐ Star this repo if you found it helpful!
 
-**Made with ❤️ for job seekers worldwide**
+**Made with ❤️ by [Ashitosh2004](https://github.com/Ashitosh2004) for job seekers worldwide**
 
 [⬆ Back to Top](#-resumepro)
 

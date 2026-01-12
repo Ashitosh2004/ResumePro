@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Sora:wght@300;400;500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,7 +6,7 @@
 
 @layer base {
     :root {
-        /* Modern Professional Palette */
+        /* Core palette - warm, sophisticated */
         --background: 0 0% 100%;
         --foreground: 222 47% 11%;
 
@@ -16,26 +16,26 @@
         --popover: 0 0% 100%;
         --popover-foreground: 222 47% 11%;
 
-        /* Vibrant Teal Primary */
-        --primary: 174 72% 56%;
+        /* Teal accent - sophisticated, trustworthy */
+        --primary: 172 66% 40%;
         --primary-foreground: 0 0% 100%;
-        --primary-glow: 174 72% 56%;
+        --primary-glow: 172 66% 50%;
 
         --secondary: 220 14% 96%;
         --secondary-foreground: 222 47% 11%;
 
         --muted: 220 14% 95%;
-        --muted-foreground: 220 10% 45%;
+        --muted-foreground: 220 15% 35%;
 
-        --accent: 174 72% 95%;
-        --accent-foreground: 174 72% 40%;
+        --accent: 172 50% 95%;
+        --accent-foreground: 172 66% 25%;
 
         --destructive: 0 72% 51%;
         --destructive-foreground: 0 0% 100%;
 
         --border: 220 13% 91%;
         --input: 220 13% 91%;
-        --ring: 174 72% 56%;
+        --ring: 172 66% 40%;
 
         --radius: 0.75rem;
 
@@ -52,48 +52,53 @@
         --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.03);
         --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
         --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.05), 0 4px 6px -4px rgb(0 0 0 / 0.05);
-        --shadow-glow: 0 0 40px hsl(174 72% 56% / 0.15);
+        --shadow-glow: 0 0 40px hsl(172 66% 50% / 0.15);
     }
 
     .dark {
-        --background: 222 47% 11%;
-        --foreground: 210 40% 98%;
+        --background: 222 30% 8%;
+        --foreground: 220 20% 95%;
 
-        --card: 222 47% 13%;
-        --card-foreground: 210 40% 98%;
+        --card: 222 25% 11%;
+        --card-foreground: 220 20% 95%;
 
-        --popover: 222 47% 13%;
-        --popover-foreground: 210 40% 98%;
+        --popover: 222 25% 11%;
+        --popover-foreground: 220 20% 95%;
 
-        --primary: 174 72% 56%;
-        --primary-foreground: 222 47% 11%;
-        --primary-glow: 174 72% 66%;
+        --primary: 172 66% 50%;
+        --primary-foreground: 222 30% 8%;
+        --primary-glow: 172 66% 60%;
 
-        --secondary: 217 33% 17%;
-        --secondary-foreground: 210 40% 98%;
+        --secondary: 222 20% 16%;
+        --secondary-foreground: 220 15% 80%;
 
-        --muted: 217 33% 17%;
-        --muted-foreground: 215 20% 65%;
+        --muted: 222 20% 18%;
+        --muted-foreground: 220 10% 55%;
 
-        --accent: 174 72% 15%;
-        --accent-foreground: 174 72% 80%;
+        --accent: 172 40% 15%;
+        --accent-foreground: 172 66% 70%;
 
-        --destructive: 0 62% 30%;
-        --destructive-foreground: 0 85% 97%;
+        --destructive: 0 72% 51%;
+        --destructive-foreground: 0 0% 100%;
 
-        --border: 217 33% 20%;
-        --input: 217 33% 20%;
-        --ring: 174 72% 56%;
+        --border: 222 20% 18%;
+        --input: 222 20% 18%;
+        --ring: 172 66% 50%;
+
+        /* Score colors - slightly brighter for dark mode */
+        --score-low: 0 72% 55%;
+        --score-medium: 38 92% 55%;
+        --score-high: 152 69% 50%;
 
         /* Glass effect for dark mode */
-        --glass-bg: 222 47% 13% / 0.7;
-        --glass-border: 217 33% 20% / 0.3;
+        --glass-bg: 222 25% 12% / 0.8;
+        --glass-border: 220 20% 25% / 0.3;
 
         /* Shadows for dark mode */
         --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
         --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.2);
         --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4), 0 4px 6px -4px rgb(0 0 0 / 0.3);
-        --shadow-glow: 0 0 60px hsl(174 72% 56% / 0.2);
+        --shadow-glow: 0 0 60px hsl(172 66% 50% / 0.2);
     }
 }
 

@@ -95,37 +95,56 @@ const Index = () => {
       </motion.header>
 
       {/* Hero Section */}
-      <section className="container max-w-6xl mx-auto px-4 pt-8 pb-6 md:pt-12 md:pb-8">
+      <section className="container max-w-6xl mx-auto px-4 py-16 md:py-24">
         <motion.div
-          className="text-center max-w-3xl mx-auto"
+          className="text-center max-w-4xl mx-auto"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.6 }}
         >
+          {/* Badge */}
           <motion.div
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-accent text-accent-foreground text-sm font-medium mb-4"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium mb-6"
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ delay: 0.2 }}
           >
             <Sparkles className="w-4 h-4" />
-            Professional Resume Analyzer • Like Hiring Companies Use
+            AI-Powered Resume Analysis
           </motion.div>
 
-          <h1 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground mb-3 leading-tight">
-            ATS Resume Analyzer
-            <br />
-            <span className="text-primary">& Optimizer</span>
+          {/* Headline */}
+          <h1 className="font-display text-5xl md:text-6xl lg:text-7xl font-bold text-foreground mb-6 leading-tight">
+            Beat the ATS.<br />
+            Land More Interviews.
           </h1>
 
-          <p className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto">
-            Get recruiter-level analysis, credibility check, and instant improvements for your resume.
+          {/* Subheadline */}
+          <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
+            Get instant feedback on your resume with our professional ATS analyzer.
+            Optimize for applicant tracking systems and stand out to recruiters.
           </p>
+
+          {/* Trust Indicators */}
+          <div className="flex items-center justify-center gap-8 text-sm text-muted-foreground mb-12">
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary"></div>
+              <span>Free Analysis</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary"></div>
+              <span>Instant Results</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full bg-primary"></div>
+              <span>100% Private</span>
+            </div>
+          </div>
         </motion.div>
       </section>
 
       {/* Step Indicator */}
-      <section className="container max-w-4xl mx-auto px-4">
+      <section className="container max-w-4xl mx-auto px-4 mb-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -141,12 +160,12 @@ const Index = () => {
           className="glass-card p-6 md:p-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
-              <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">1</span>
-              <h2 className="font-display font-semibold text-foreground">Input Your Resume</h2>
+              <span className="w-8 h-8 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">1</span>
+              <h2 className="font-display text-lg font-semibold text-foreground">Input Your Resume</h2>
             </div>
             <span className={`text-sm ${isValidLength ? 'text-muted-foreground' : 'text-score-medium'}`}>
               {characterCount.toLocaleString()} chars
@@ -255,20 +274,24 @@ Software Engineer | Tech Company | 2021 - Present
             )}
           </AnimatePresence>
 
-          <div className="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
             <Button
-              variant="hero"
-              size="xl"
+              variant="default"
+              size="lg"
               onClick={handleAnalyze}
               disabled={isAnalyzing || !resumeText.trim()}
-              className="gap-2"
+              className="px-8 py-6 text-base font-semibold shadow-lg hover:shadow-xl transition-all"
             >
               {isAnalyzing ? (
-                'Analyzing...'
+                <>
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
+                  Analyzing...
+                </>
               ) : (
                 <>
+                  <BarChart3 className="w-5 h-5 mr-2" />
                   Analyze Resume
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="w-5 h-5 ml-2" />
                 </>
               )}
             </Button>
@@ -284,183 +307,187 @@ Software Engineer | Tech Company | 2021 - Present
             )}
           </div>
         </motion.div>
-      </section>
+      </section >
 
       {/* Loading State */}
       <AnimatePresence>
-        {isAnalyzing && (
-          <motion.section
-            className="container max-w-4xl mx-auto px-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <AnalyzingLoader />
-          </motion.section>
-        )}
-      </AnimatePresence>
+        {
+          isAnalyzing && (
+            <motion.section
+              className="container max-w-4xl mx-auto px-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <AnalyzingLoader />
+            </motion.section>
+          )
+        }
+      </AnimatePresence >
 
       {/* Results Section */}
       <AnimatePresence>
-        {result && !isAnalyzing && (
-          <motion.div
-            ref={resultsRef}
-            className="container max-w-6xl mx-auto px-4 pb-20 space-y-8"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-          >
-            {/* STEP 2: ATS Score Section */}
-            <section>
-              <motion.div
-                className="flex items-center gap-2 mb-4"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-              >
-                <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">2</span>
-                <h2 className="font-display text-xl font-semibold text-foreground">ATS Score & Breakdown</h2>
-              </motion.div>
-
-              <div className="grid lg:grid-cols-3 gap-6">
-                {/* Score Meter */}
+        {
+          result && !isAnalyzing && (
+            <motion.div
+              ref={resultsRef}
+              className="container max-w-6xl mx-auto px-4 pb-20 space-y-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5 }}
+            >
+              {/* STEP 2: ATS Score Section */}
+              <section>
                 <motion.div
-                  className="glass-card p-6 flex flex-col items-center justify-center"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.1 }}
+                  className="flex items-center gap-2 mb-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
                 >
-                  <h3 className="font-display font-medium text-foreground mb-4 text-sm">
-                    Your ATS Score
-                  </h3>
-                  <ScoreMeter score={result.score} />
+                  <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">2</span>
+                  <h2 className="font-display text-xl font-semibold text-foreground">ATS Score & Breakdown</h2>
                 </motion.div>
 
-                {/* Score Breakdown */}
-                <motion.div
-                  className="glass-card p-6"
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.15 }}
-                >
-                  <h3 className="font-display font-medium text-foreground mb-4 flex items-center gap-2 text-sm">
-                    <BarChart3 className="w-4 h-4 text-primary" />
-                    Score Breakdown
-                  </h3>
-                  <ScoreBreakdownChart breakdown={result.scoreBreakdown} />
-                </motion.div>
+                <div className="grid lg:grid-cols-3 gap-6">
+                  {/* Score Meter */}
+                  <motion.div
+                    className="glass-card p-6 flex flex-col items-center justify-center"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    <h3 className="font-display font-medium text-foreground mb-4 text-sm">
+                      Your ATS Score
+                    </h3>
+                    <ScoreMeter score={result.score} />
+                  </motion.div>
+
+                  {/* Score Breakdown */}
+                  <motion.div
+                    className="glass-card p-6"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.15 }}
+                  >
+                    <h3 className="font-display font-medium text-foreground mb-4 flex items-center gap-2 text-sm">
+                      <BarChart3 className="w-4 h-4 text-primary" />
+                      Score Breakdown
+                    </h3>
+                    <ScoreBreakdownChart breakdown={result.scoreBreakdown} />
+                  </motion.div>
 
 
-              </div>
-
-              {/* Score Explanation */}
-              <motion.div
-                className="mt-4"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25 }}
-              >
-                <ScoreExplanation explanation={result.scoreExplanation} score={result.score} />
-              </motion.div>
-            </section>
-
-            {/* STEP 3: Detailed Analysis Section */}
-            <section>
-              <motion.div
-                className="flex items-center gap-2 mb-4"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.3 }}
-              >
-                <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">3</span>
-                <h2 className="font-display text-xl font-semibold text-foreground">Detailed Analysis</h2>
-              </motion.div>
-
-              {/* Credibility Check */}
-              <motion.div
-                className="mb-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35 }}
-              >
-                <CredibilityCheckCard credibility={result.credibilityCheck} />
-              </motion.div>
-
-
-
-
-
-              {/* Missing Keywords */}
-              <motion.div
-                className="glass-card p-6 mb-6"
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.55 }}
-              >
-                <h3 className="font-display font-semibold text-foreground mb-4">
-                  Keyword & Skill Gap Analysis
-                </h3>
-                <KeywordChips keywords={result.missingKeywords} />
-              </motion.div>
-
-              {/* Feedback Section */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.6 }}
-              >
-                <h3 className="font-display font-semibold text-foreground mb-4">
-                  Professional Feedback
-                </h3>
-                <div className="space-y-3">
-                  {result.feedback.map((item, index) => (
-                    <FeedbackCard key={index} feedback={item} index={index} />
-                  ))}
                 </div>
-              </motion.div>
-            </section>
 
-            {/* STEP 4: Improved Resume Section */}
-            <section>
-              <motion.div
-                className="flex items-center gap-2 mb-4"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.65 }}
-              >
-                <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">4</span>
-                <h2 className="font-display text-xl font-semibold text-foreground">Your Improved Resume</h2>
-              </motion.div>
+                {/* Score Explanation */}
+                <motion.div
+                  className="mt-4"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.25 }}
+                >
+                  <ScoreExplanation explanation={result.scoreExplanation} score={result.score} />
+                </motion.div>
+              </section>
 
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 }}
-              >
-                <ResumeComparison
-                  original={resumeText}
-                  improved={result.improvedResume}
-                />
-              </motion.div>
+              {/* STEP 3: Detailed Analysis Section */}
+              <section>
+                <motion.div
+                  className="flex items-center gap-2 mb-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">3</span>
+                  <h2 className="font-display text-xl font-semibold text-foreground">Detailed Analysis</h2>
+                </motion.div>
 
-              {/* Cover Letter Generator */}
-              <motion.div
-                className="mt-6"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.75 }}
-              >
-                <CoverLetterGenerator
-                  resumeText={result.improvedResume}
-                  jobDescription={jobDescription}
-                />
-              </motion.div>
-            </section>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                {/* Credibility Check */}
+                <motion.div
+                  className="mb-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35 }}
+                >
+                  <CredibilityCheckCard credibility={result.credibilityCheck} />
+                </motion.div>
+
+
+
+
+
+                {/* Missing Keywords */}
+                <motion.div
+                  className="glass-card p-6 mb-6"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.55 }}
+                >
+                  <h3 className="font-display font-semibold text-foreground mb-4">
+                    Keyword & Skill Gap Analysis
+                  </h3>
+                  <KeywordChips keywords={result.missingKeywords} />
+                </motion.div>
+
+                {/* Feedback Section */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 }}
+                >
+                  <h3 className="font-display font-semibold text-foreground mb-4">
+                    Professional Feedback
+                  </h3>
+                  <div className="space-y-3">
+                    {result.feedback.map((item, index) => (
+                      <FeedbackCard key={index} feedback={item} index={index} />
+                    ))}
+                  </div>
+                </motion.div>
+              </section>
+
+              {/* STEP 4: Improved Resume Section */}
+              <section>
+                <motion.div
+                  className="flex items-center gap-2 mb-4"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.65 }}
+                >
+                  <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">4</span>
+                  <h2 className="font-display text-xl font-semibold text-foreground">Your Improved Resume</h2>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <ResumeComparison
+                    original={resumeText}
+                    improved={result.improvedResume}
+                  />
+                </motion.div>
+
+                {/* Cover Letter Generator */}
+                <motion.div
+                  className="mt-6"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.75 }}
+                >
+                  <CoverLetterGenerator
+                    resumeText={result.improvedResume}
+                    jobDescription={jobDescription}
+                  />
+                </motion.div>
+              </section>
+            </motion.div>
+          )
+        }
+      </AnimatePresence >
 
       {/* Footer */}
-      <motion.footer
+      < motion.footer
         className="border-t border-border/50 py-6"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -471,8 +498,8 @@ Software Engineer | Tech Company | 2021 - Present
             Professional ATS Resume Analyzer • Trusted by Job Seekers Worldwide
           </p>
         </div>
-      </motion.footer>
-    </div>
+      </motion.footer >
+    </div >
   );
 };
 
