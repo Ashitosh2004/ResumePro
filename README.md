@@ -223,7 +223,7 @@ The optimized files will be in the `dist/` directory.
 
 ### Deploy to Vercel (Recommended)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Ashitosh2004/resumepro)
+[![Deploy with Vercel](https://vercel.com/button)](https://resumeprotech.vercel.app/)
 
 ### Other Platforms
 
