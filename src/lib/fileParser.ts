@@ -7,6 +7,28 @@ if (typeof window !== 'undefined') {
 }
 
 /**
+ * Clean and normalize extracted text to remove formatting artifacts
+ */
+function cleanExtractedText(text: string): string {
+    return text
+        // Remove excessive whitespace
+        .replace(/\s+/g, ' ')
+        // Remove control characters
+        .replace(/[\u0000-\u001F\u007F-\u009F]/g, '')
+        // Normalize line breaks
+        .replace(/\r\n/g, '\n')
+        .replace(/\r/g, '\n')
+        // Remove multiple consecutive line breaks
+        .replace(/\n{3,}/g, '\n\n')
+        // Trim each line and remove empty lines
+        .split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .join('\n')
+        .trim();
+}
+
+/**
  * Parse PDF file and extract text
  */
 export async function parsePDF(file: File): Promise<string> {
@@ -49,7 +71,8 @@ export async function parsePDF(file: File): Promise<string> {
             throw new Error('No readable text found in PDF. The PDF might be image-based or corrupted.');
         }
 
-        return trimmedText;
+        // Clean and normalize the extracted text
+        return cleanExtractedText(trimmedText);
     } catch (error: any) {
         console.error('PDF parsing error:', error);
 
@@ -73,7 +96,8 @@ export async function parseDOCX(file: File): Promise<string> {
             throw new Error('No text content found in DOCX file');
         }
 
-        return result.value.trim();
+        // Clean and normalize the extracted text
+        return cleanExtractedText(result.value);
     } catch (error) {
         console.error('DOCX parsing error:', error);
         throw new Error('Failed to parse DOCX file. Please ensure it\'s a valid Word document.');
