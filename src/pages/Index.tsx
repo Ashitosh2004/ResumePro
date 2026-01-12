@@ -13,12 +13,9 @@ import { ResumeComparison } from '@/components/ResumeComparison';
 import { AnalyzingLoader } from '@/components/AnalyzingLoader';
 import { IndustrySelector } from '@/components/IndustrySelector';
 import { JobDescriptionMatcher } from '@/components/JobDescriptionMatcher';
-import { ReadabilityStats } from '@/components/ReadabilityStats';
-import { PowerWordsAnalysis } from '@/components/PowerWordsAnalysis';
-import { SectionScores } from '@/components/SectionScores';
-import { ImprovementTracker } from '@/components/ImprovementTracker';
 import { CoverLetterGenerator } from '@/components/CoverLetterGenerator';
 import { StepIndicator } from '@/components/StepIndicator';
+import { FileUpload } from '@/components/FileUpload';
 import { analyzeResume, type AnalysisResult } from '@/lib/resumeAnalyzer';
 
 const STEPS = [
@@ -36,6 +33,7 @@ const Index = () => {
   const [industry, setIndustry] = useState('general');
   const [jobDescription, setJobDescription] = useState('');
   const [showAdvanced, setShowAdvanced] = useState(false);
+  const [inputMode, setInputMode] = useState<'paste' | 'upload'>('paste');
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const characterCount = resumeText.length;
@@ -145,15 +143,10 @@ const Index = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <span className="w-7 h-7 rounded-full bg-primary text-primary-foreground flex items-center justify-center text-sm font-bold">1</span>
-              <label
-                htmlFor="resume-input"
-                className="font-display font-semibold text-foreground"
-              >
-                Paste Your Resume
-              </label>
+              <h2 className="font-display font-semibold text-foreground">Input Your Resume</h2>
             </div>
             <span className={`text-sm ${isValidLength ? 'text-muted-foreground' : 'text-score-medium'}`}>
               {characterCount.toLocaleString()} chars
@@ -161,11 +154,35 @@ const Index = () => {
             </span>
           </div>
 
-          <textarea
-            id="resume-input"
-            value={resumeText}
-            onChange={(e) => setResumeText(e.target.value)}
-            placeholder="Copy and paste your entire resume here...
+          {/* Tab Switcher */}
+          <div className="flex gap-2 mb-6 p-1 bg-muted rounded-xl">
+            <button
+              onClick={() => setInputMode('paste')}
+              className={`flex-1 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${inputMode === 'paste'
+                ? 'bg-background text-foreground shadow-sm'
+                : 'text-muted-foreground hover:text-foreground'
+                }`}
+            >
+              📝 Paste Text
+            </button>
+            <button
+              onClick={() => setInputMode('upload')}
+              className={`flex-1 px-4 py-2.5 rounded-lg text-sm font-medium transition-all ${inputMode === 'upload'
+                ? 'bg-background text-foreground shadow-sm'
+                : 'text-muted-foreground hover:text-foreground'
+                }`}
+            >
+              📄 Upload File
+            </button>
+          </div>
+
+          {/* Paste Mode */}
+          {inputMode === 'paste' && (
+            <textarea
+              id="resume-input"
+              value={resumeText}
+              onChange={(e) => setResumeText(e.target.value)}
+              placeholder="Copy and paste your entire resume here...
 
 Example:
 John Doe
@@ -178,9 +195,18 @@ EXPERIENCE
 Software Engineer | Tech Company | 2021 - Present
 • Developed user-facing features using React and Node.js
 • Collaborated with design team to improve UX..."
-            className="w-full h-48 md:h-56 p-4 rounded-xl bg-muted/50 border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none text-foreground placeholder:text-muted-foreground/60 text-sm leading-relaxed"
-            disabled={isAnalyzing}
-          />
+              className="w-full h-48 md:h-56 p-4 rounded-xl bg-muted/50 border border-border focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all resize-none text-foreground placeholder:text-muted-foreground/60 text-sm leading-relaxed"
+              disabled={isAnalyzing}
+            />
+          )}
+
+          {/* Upload Mode */}
+          {inputMode === 'upload' && (
+            <FileUpload
+              onTextExtracted={(text) => setResumeText(text)}
+              onError={(err) => setError(err)}
+            />
+          )}
 
           {/* Advanced Options Toggle */}
           <button
@@ -323,18 +349,7 @@ Software Engineer | Tech Company | 2021 - Present
                   <ScoreBreakdownChart breakdown={result.scoreBreakdown} />
                 </motion.div>
 
-                {/* Improvement Tracker */}
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <ImprovementTracker
-                    originalScore={result.score}
-                    improvementPercentage={result.improvementPercentage}
-                    industryMatch={result.industryMatch}
-                  />
-                </motion.div>
+
               </div>
 
               {/* Score Explanation */}
@@ -370,36 +385,9 @@ Software Engineer | Tech Company | 2021 - Present
                 <CredibilityCheckCard credibility={result.credibilityCheck} />
               </motion.div>
 
-              {/* Power Words & Readability */}
-              <div className="grid md:grid-cols-2 gap-6 mb-6">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4 }}
-                >
-                  <PowerWordsAnalysis powerWords={result.powerWords} />
-                </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.45 }}
-                >
-                  <ReadabilityStats stats={result.readabilityStats} />
-                </motion.div>
-              </div>
 
-              {/* Section Scores */}
-              {result.sectionScores.length > 0 && (
-                <motion.div
-                  className="mb-6"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <SectionScores sections={result.sectionScores} />
-                </motion.div>
-              )}
+
 
               {/* Missing Keywords */}
               <motion.div

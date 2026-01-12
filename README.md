@@ -221,7 +221,7 @@ The optimized files will be in the `dist/` directory.
 
 ### Deploy to Vercel (Recommended)
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/resumepro)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Ashitosh2004/resumepro)
 
 ### Other Platforms
 
@@ -261,8 +261,8 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 
 ## 📧 Contact & Support
 
-- 🐛 **Bug Reports**: [Open an issue](https://github.com/yourusername/resumepro/issues)
-- 💡 **Feature Requests**: [Start a discussion](https://github.com/yourusername/resumepro/discussions)
+- 🐛 **Bug Reports**: [Open an issue](https://github.com/Ashitosh2004/resumepro/issues)
+- 💡 **Feature Requests**: [Start a discussion](https://github.com/Ashitosh2004/resumepro/discussions)
 - 📧 **Email**: support@resumepro.com
 
 ---
